@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="systemjmrs">
+		<class>br.com.systemjmrs.entity.Aluno</class>
+		<class>br.com.systemjmrs.entity.Disciplina</class>
+		<class>br.com.systemjmrs.entity.Imagem</class>
+		<class>br.com.systemjmrs.entity.Prova</class>
+		<class>br.com.systemjmrs.entity.ProvaTp</class>
+		<class>br.com.systemjmrs.entity.Questao</class>
+		<class>br.com.systemjmrs.entity.QuestaoTp</class>
+		<class>br.com.systemjmrs.entity.Usuario</class>
+		<class>br.com.systemjmrs.entity.UsuarioTp</class>
+	</persistence-unit>
+</persistence>
