@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<meta charset="ISO-8859-1" />
-<title>Insert title here</title>
+<title>Spring Security</title>
+
 </head>
+
 <body>
-Teste
+	<form th:action="@{/login}" method="post">
+		<input name="username" class="form-control" placeholder="Usuário" /> <input
+			type="password" name="password" class="form-control"
+			placeholder="Senha" />
+
+		<button class="btn btn-primary btn-block">Entrar</button>
+	</form>
 </body>
 </html>

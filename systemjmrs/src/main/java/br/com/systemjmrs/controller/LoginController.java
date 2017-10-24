@@ -10,4 +10,9 @@ public class LoginController {
 		return "formulario-login";
 	}
 	
+	@RequestMapping("/") 
+	public String efetuaLogin (){
+		return"menu";
+	}
+	
 }
