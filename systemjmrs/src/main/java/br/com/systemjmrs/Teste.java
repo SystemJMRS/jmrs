@@ -1,5 +1,5 @@
 package br.com.systemjmrs;
 
-public class ClasseTesteJonatas {
+public class Teste {
 
 }
