@@ -7,12 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {	
 	@RequestMapping("/login")
 	public String loginForm () {
-		return "formulario-login";
+		return "login";
 	}
 	
 	@RequestMapping("/") 
-	public String efetuaLogin (){
-		return"menu";
+	public String home (){
+		return"base";
+	}
+	
+	//Teste*****
+	@RequestMapping("/primeiro-acesso") 
+	public String primeiroAcesso (){
+		return"primeiro-acesso";
 	}
 	
 }
