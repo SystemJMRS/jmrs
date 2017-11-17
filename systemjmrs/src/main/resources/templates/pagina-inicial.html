@@ -1,115 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" class="ls-theme-light-green">
 
-<head>
-  <title>Home</title>
-  <meta charset="utf-8"/>
-  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-  <meta name="description" content="Inseir aqui a descrição da página."/>
-  <link href="3.10.0\stylesheets\locastyle.css" th:href="@{3.10.0\stylesheets\locastyle.css}" rel="stylesheet" type="text/css"/>
-  <link rel="icon" sizes="192x192" href="3.10.0\images\ico-apple-books.png">
-  <link rel="apple-touch-icon" href="3.10.0\images\ico-apple-books.png">
-</head>
+<head th:replace="fragments/base :: head"></head>
 
-<body>
-  <div class="ls-topbar ">
+<div th:replace="fragments/base :: ls-topbar"></div>
 
-    <!-- Barra de Notificações -->
-    <div class="ls-notification-topbar">
+<div th:replace="fragments/base :: ls-sidebar"></div>
 
-      <!-- Links de apoio -->
-      <div class="ls-alerts-list">
-        <a href="#" class="ls-ico-bell-o" data-counter="8" data-ls-module="topbarCurtain" data-target="#ls-notification-curtain"><span>Notificações</span></a>
-      </div>
+<div th:replace="fragments/base :: ls-notification"></div>
 
-      <!-- Dropdown com detalhes da conta de usuário -->
-      <div data-ls-module="dropdown" class="ls-dropdown ls-user-account">
-        <a href="#" class="ls-ico-user"/>
-        <img src="/avatar.jpg" alt="" />
-        <span class="ls-name">João </span>
-        (username)
-      </a>
-
-        <nav class="ls-dropdown-nav ls-user-menu">
-          <ul>
-            <li><a href="#">Meus dados</a></li>
-            <li><a href="#">Sair</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-
-    <span class="ls-show-sidebar ls-ico-menu"></span>
-
-    <!-- Nome com sidebar -->
-    <h1 class="ls-brand-name">
-      <a href="home" class="ls-ico-earth">
-        JMRS
-      </a>
-    </h1>
-
-
-  <aside class="ls-sidebar">
-
-    <div class="ls-sidebar-inner">
-      <a class="ls-go-prev"><span class="ls-text">Voltar à lista de serviços</span></a>
-
-      <nav class="ls-menu">
-
-        <li class="ls-submenu-parent" aria-expanded="false" aria-hidden="true">
-          <a href="#" class="ls-ico-dashboard" role="menuitem">Dashboard</a>
-          <ul class="ls-submenu" role="menu">
-            <li><a href="/painel2/gerarelatorio" class="ls-submenu-item" role="menuitem">Relatórios</a></li>
-          </ul>
-
-          <li class="ls-submenu-parent" aria-expanded="false" aria-hidden="true">
-            <a href="#" class="ls-ico-menu" role="menuitem">Gerenciamento</a>
-            <ul class="ls-submenu" role="menu">
-              <li><a href="/painel2/cadastrodequestao" class="ls-submenu-item" role="menuitem">Cadastrar Questão</a></li>
-              <li><a href="/painel2/elaborarprova" class="ls-submenu-item" role="menuitem">Elaborar Prova</a></li>
-              <li><a href="/painel2/enviarprovacoordenador" class="ls-submenu-item" role="menuitem">Enviar Prova para o Coordenador</a></li>
-              <li><a href="/painel2/cadastraaluno" class="ls-submenu-item" role="menuitem">Cadastrar Aluno</a></li>
-
-            </ul>
-          </li>
-
-          <li><a href="#" class="ls-ico-cog" title="Configurações">Configurações</a> </li>
-
-        </li>
-      </nav>
-    </div>
-  </aside>
-
-  <!-- Main sempre o que for selecionado ou home -->
-
-  <main class="ls-main ">
-    <div class="container-fluid">
-      <h1 class="ls-title-intro ls-ico-home">Página inicial</h1>
-
-      <p>Informações a serem definidas
-        <p>
-
-          <hr>
-    </div>
-  </main>
-
-  <aside class="ls-notification">
-    <nav class="ls-notification-list" id="ls-notification-curtain" style="left: 1716px;">
-      <h1 class="ls-title-2">Notificações</h1>
-      <ul>
-        <li class="ls-dismissable">
-          <a href="#">O coordenador aceitou sua solicitação</a>
-          <a href="#" data-ls-module="dismiss" class="ls-ico-close ls-close-notification"></a>
-        </li>
-      </ul>
-    </nav>
-
-  </aside>
-
-  <!-- We recommended use jQuery 1.10 or up -->
-  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script src="http://assets.locaweb.com.br/locastyle/3.10.0/javascripts/locastyle.js" type="text/javascript"></script>
-</body>
+<div th:replace="fragments/base :: scripts"></div>
 
 </html>

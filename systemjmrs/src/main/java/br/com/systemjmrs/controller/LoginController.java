@@ -12,7 +12,7 @@ public class LoginController {
 	
 	@RequestMapping("/") 
 	public String home (){
-		return"base";
+		return"pagina-inicial";
 	}
 	
 	//Teste*****
