@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 
+//Aleluia!!! \o/
 public class SystemjmrsApplication {
 
 	public static void main(String[] args) {
