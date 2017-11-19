@@ -12,7 +12,6 @@ import java.util.Date;
 @Entity
 @NamedQuery(name="Aluno.findAll", query="SELECT a FROM Aluno a")
 public class Aluno implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
 
 	@Id

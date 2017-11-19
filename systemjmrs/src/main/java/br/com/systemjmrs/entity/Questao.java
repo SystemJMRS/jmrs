@@ -24,8 +24,7 @@ public class Questao implements Serializable {
 	private Date dataCriacao;
 
 	@Lob
-	//Troquei byte por String
-	private String questao;
+	private byte[] questao;
 
 	@Column(name="questao_tp_id")
 	private int questaoTpId;
@@ -60,11 +59,11 @@ public class Questao implements Serializable {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public String getQuestao() {
+	public byte[] getQuestao() {
 		return this.questao;
 	}
 
-	public void setQuestao(String questao) {
+	public void setQuestao(byte[] questao) {
 		this.questao = questao;
 	}
 
