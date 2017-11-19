@@ -26,4 +26,9 @@ public class QuestaoController {
 		
 		return "redirect:/professor/cadastrar-questao";
 	}
+	
+	@RequestMapping(value = "/aprovar-reprovar-questao", method = RequestMethod.GET)
+	public String aprovarReprovarQuestao() {
+		return "coordenador/aprovar-reprovar-questao";
+	}
 }

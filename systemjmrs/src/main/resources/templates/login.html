@@ -2,9 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org"
 	class="ls-theme-green ls-window-lg ls-screen-lg ls-browser-chrome">
 
-<!--<html class="ls-theme-light-green">-->
-
-<head th:replace="fragments/base :: head"></head>
+<head>
+<thymeleaf th:replace="fragments/base :: head" />
+<title>Login</title>
+<meta charset="UTF-8" />
+</head>
 
 <body
 	class="documentacao documentacao_exemplos documentacao_exemplos_login-screen documentacao_exemplos_login-screen_index">
@@ -22,7 +24,7 @@
 						<fieldset>
 
 							<label class="ls-label"> <b
-								class="ls-label-text ls-hidden-accessible">Usu·rio</b> <input
+								class="ls-label-text ls-hidden-accessible">Usu√°rio</b> <input
 								name="username" class="ls-login-bg-user ls-field-lg" type="text"
 								placeholder="E-mail" required="" autofocus="" />
 							</label> <label class="ls-label"> <b
