@@ -7,6 +7,6 @@ import br.com.systemjmrs.entity.Questao;
 
 
 @Repository
-public interface QuestaoRepository extends CrudRepository<Questao, String> {
+public interface QuestaoRepository extends CrudRepository<Questao, Long> {
 
 }
