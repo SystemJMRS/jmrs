@@ -15,9 +15,17 @@ public class SecurityWebConfig extends WebSecurityConfigurerAdapter {
 				.and().formLogin().loginPage("/login").permitAll();
 	}
 	
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception{
+		web.ignoring().antMatchers("/3.10.0/**");
+	}
+	
 	@Override
 	public void configure(AuthenticationManagerBuilder builder) throws Exception {
 		builder.inMemoryAuthentication().withUser("Rogerio").password("queto").roles("USER");
 	}
+	
+	
 
 }

@@ -11,21 +11,20 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 @Configuration
-@Profile("dev")
 public class DataConfiguration {
 
 	@Bean
-    public DataSource dataSource(){
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql:db_jmrs.mysql.dbaas.com.br/db_jmrs");
-        dataSource.setUsername("root");
-        dataSource.setPassword("Trocar@2018");
-        return dataSource;
-    }
-	
+	public DataSource dataSource() {
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://db_jmrs.mysql.dbaas.com.br:3306/db_jmrs");
+		dataSource.setUsername("db_jmrs");
+		dataSource.setPassword("Trocar@2018");
+		return dataSource;
+	}
+
 	@Bean
-	public JpaVendorAdapter jpaVendorAdapter(){
+	public JpaVendorAdapter jpaVendorAdapter() {
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		adapter.setDatabase(Database.MYSQL);
 		adapter.setShowSql(true);
