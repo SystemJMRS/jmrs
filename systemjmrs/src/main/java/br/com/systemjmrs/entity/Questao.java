@@ -42,10 +42,22 @@ public class Questao implements Serializable {
 
 	public Questao() {
 	}
+	
 
 	public int getQuestaoId() {
 		return this.questaoId;
 	}
+
+	public Questao(int questaoId, Date dataCriacao, byte[] questao, int questaoTpId, String resposta, Usuario usuario) {
+		super();
+		this.questaoId = questaoId;
+		this.dataCriacao = dataCriacao;
+		this.questao = questao;
+		this.questaoTpId = questaoTpId;
+		this.resposta = resposta;
+		this.usuario = usuario;
+	}
+
 
 	public void setQuestaoId(int questaoId) {
 		this.questaoId = questaoId;
