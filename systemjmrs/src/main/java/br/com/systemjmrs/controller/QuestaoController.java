@@ -30,7 +30,7 @@ public class QuestaoController {
 	@RequestMapping(value = "/cadastrar-questao", method = RequestMethod.GET)
 	public ModelAndView cadastrarQuestao() {
 		ModelAndView modelAndView = new ModelAndView("/cadastrar-questao");
-		modelAndView.addObject("questaoTipos", qtpr.);
+		modelAndView.addObject("questaoTipos", qtpr.findAll());
 		return new ModelAndView("professor/cadastrar-questao");
 	}
 
