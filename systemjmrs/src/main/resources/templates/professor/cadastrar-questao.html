@@ -16,18 +16,14 @@
 <main class="ls-main ">
 <div class="container-fluid">
 	<h1 class="ls-title-intro ls-ico-home">Cadastro de Questão</h1>
-
+	<p th:each="questaoTipo : ${questaoTipos}"
+       th:text="${questaoTipo.questao_1_6_}">A Smoke Test</p>
+       <p>Teste</p>
 	<form action="cadastrar-questao" class="ls-form" method="POST">
 		<div>
 			<fieldset>
 
-				<label class="ls-label"> <b class="ls-label-text">Id</b> <input
-					name="questaoId" class="ls-field-lg" type="number" required=""
-					autofocus="" />
-				</label> <label class="ls-label"> <b class="ls-label-text">Data
-						Criacao</b> <input name="dataCriacao" class="ls-field-lg" type="date"
-					required="" autofocus="" />
-				</label> <label class="ls-label"> <b class="ls-label-text">Questao</b>
+				<label class="ls-label"> <b class="ls-label-text">Questao</b>
 					<input name="questao" class="ls-field-lg" type="text" required=""
 					autofocus="" />
 				</label> <label class="ls-label"> <b class="ls-label-text">Tipo

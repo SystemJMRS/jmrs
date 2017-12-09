@@ -2,6 +2,10 @@ package br.com.systemjmrs.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -17,14 +21,17 @@ public class Questao implements Serializable {
 
 	@Id
 	@Column(name="questao_id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int questaoId;
 
+	
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="data_criacao")
 	private Date dataCriacao;
 
 	@Lob
-	private byte[] questao;
+	private String questao;
 
 	@Column(name="questao_tp_id")
 	private int questaoTpId;
@@ -33,7 +40,7 @@ public class Questao implements Serializable {
 
 	//bi-directional many-to-one association to Imagem
 	@OneToMany(mappedBy="questao")
-	private List<Imagem> imagems;
+	private List<Imagem> imagens;
 
 	//bi-directional many-to-one association to Usuario
 	@ManyToOne
@@ -48,9 +55,7 @@ public class Questao implements Serializable {
 		return this.questaoId;
 	}
 
-	public Questao(int questaoId, Date dataCriacao, byte[] questao, int questaoTpId, String resposta, Usuario usuario) {
-		super();
-		this.questaoId = questaoId;
+	public Questao(Date dataCriacao, String questao, int questaoTpId, String resposta, Usuario usuario) {
 		this.dataCriacao = dataCriacao;
 		this.questao = questao;
 		this.questaoTpId = questaoTpId;
@@ -71,11 +76,11 @@ public class Questao implements Serializable {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public byte[] getQuestao() {
+	public String getQuestao() {
 		return this.questao;
 	}
 
-	public void setQuestao(byte[] questao) {
+	public void setQuestao(String questao) {
 		this.questao = questao;
 	}
 
@@ -95,23 +100,23 @@ public class Questao implements Serializable {
 		this.resposta = resposta;
 	}
 
-	public List<Imagem> getImagems() {
-		return this.imagems;
+	public List<Imagem> getImagens() {
+		return this.imagens;
 	}
 
 	public void setImagems(List<Imagem> imagems) {
-		this.imagems = imagems;
+		this.imagens = imagems;
 	}
 
 	public Imagem addImagem(Imagem imagem) {
-		getImagems().add(imagem);
+		getImagens().add(imagem);
 		imagem.setQuestao(this);
 
 		return imagem;
 	}
 
 	public Imagem removeImagem(Imagem imagem) {
-		getImagems().remove(imagem);
+		getImagens().remove(imagem);
 		imagem.setQuestao(null);
 
 		return imagem;

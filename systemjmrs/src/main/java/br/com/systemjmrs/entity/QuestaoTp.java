@@ -16,14 +16,14 @@ public class QuestaoTp implements Serializable {
 
 	@Id
 	@Column(name="questao_tp_id")
-	private int questaoTpId;
+	private long questaoTpId;
 
 	private String descricao;
 
 	public QuestaoTp() {
 	}
 
-	public int getQuestaoTpId() {
+	public long getQuestaoTpId() {
 		return this.questaoTpId;
 	}
 

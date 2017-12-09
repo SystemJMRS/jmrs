@@ -17,7 +17,7 @@ public class Usuario implements Serializable {
 
 	@Id
 	@Column(name="usuario_id")
-	private int usuarioId;
+	private long usuarioId;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="data_criacao")
@@ -41,7 +41,7 @@ public class Usuario implements Serializable {
 	public Usuario() {
 	}
 
-	public int getUsuarioId() {
+	public long getUsuarioId() {
 		return this.usuarioId;
 	}
 
