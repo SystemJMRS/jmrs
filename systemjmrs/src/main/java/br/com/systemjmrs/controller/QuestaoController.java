@@ -29,13 +29,13 @@ public class QuestaoController {
 
 	@RequestMapping(value = "/cadastrar-questao", method = RequestMethod.GET)
 	public ModelAndView cadastrarQuestao() {
-		ModelAndView modelAndView = new ModelAndView("/cadastrar-questao");
+		ModelAndView modelAndView = new ModelAndView("/professor/cadastrar-questao");
 		modelAndView.addObject("questaoTipos", qtpr.findAll());
-		return new ModelAndView("professor/cadastrar-questao");
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/cadastrar-questao", method = RequestMethod.POST)
-	public String cadastrarQuestao(@RequestParam("questao") String questao,
+	public ModelAndView cadastrarQuestao(@RequestParam("questao") String questao,
 			@RequestParam("questaoTpId") int questaoTpId, @RequestParam("resposta") String resposta,
 			@RequestParam("usuario") Long usuarioForm) {
 
@@ -46,8 +46,10 @@ public class QuestaoController {
 
 		qr.save(novaQuestao);
 
-		return "professor/cadastrar-questao";
+		return cadastrarQuestao();
 	}
+	
+	
 
 	@RequestMapping(value = "/aprovar-reprovar-questao", method = RequestMethod.GET)
 	public String aprovarReprovarQuestao() {

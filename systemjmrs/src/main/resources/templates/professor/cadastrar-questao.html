@@ -16,20 +16,23 @@
 <main class="ls-main ">
 <div class="container-fluid">
 	<h1 class="ls-title-intro ls-ico-home">Cadastro de Questão</h1>
-	<p th:each="questaoTipo : ${questaoTipos}"
-       th:text="${questaoTipo.questao_1_6_}">A Smoke Test</p>
-       <p>Teste</p>
-	<form action="cadastrar-questao" class="ls-form" method="POST">
+
+	<form action="cadastrar-questao" class="ls-form" method="POST"
+		id="cadastro">
 		<div>
 			<fieldset>
 
 				<label class="ls-label"> <b class="ls-label-text">Questao</b>
 					<input name="questao" class="ls-field-lg" type="text" required=""
 					autofocus="" />
-				</label> <label class="ls-label"> <b class="ls-label-text">Tipo
-						Questao Id</b> <input name="questaoTpId" class="ls-field-lg"
-					type="number" required="" autofocus="" />
-				</label> <label class="ls-label"> <b class="ls-label-text">Reposta</b>
+				</label> <label class="ls-label"> <b class="ls-label-text">Tipo</b><select class="form-control"
+					name="questaoTpId" form="cadastro">
+						<option th:each="questaoTipo : ${questaoTipos}"
+							th:text="${questaoTipo.descricao}"
+							th:value="${questaoTipo.questaoTpId}"></option>
+				</select>
+				
+				</label><label class="ls-label"> <b class="ls-label-text">Reposta</b>
 					<input name="resposta" class="ls-field-lg" type="text" required=""
 					autofocus="" />
 				</label> <label class="ls-label"> <b class="ls-label-text">Usuario</b>
@@ -44,6 +47,8 @@
 		<input type="hidden" th:name="${_csrf.parameterName}"
 			th:value="${_csrf.token}" />
 	</form>
+
+
 </div>
 </main>
 
