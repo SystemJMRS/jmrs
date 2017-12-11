@@ -31,7 +31,7 @@ public class Usuario implements Serializable {
 
 	//bi-directional many-to-one association to Questao
 	@OneToMany(mappedBy="usuario")
-	private List<Questao> questaos;
+	private List<Questao> questoes;
 
 	//bi-directional many-to-one association to UsuarioTp
 	@ManyToOne
@@ -82,11 +82,11 @@ public class Usuario implements Serializable {
 	}
 
 	public List<Questao> getQuestaos() {
-		return this.questaos;
+		return this.getQuestaos();
 	}
 
 	public void setQuestaos(List<Questao> questaos) {
-		this.questaos = questaos;
+		this.questoes = questaos;
 	}
 
 	public Questao addQuestao(Questao questao) {

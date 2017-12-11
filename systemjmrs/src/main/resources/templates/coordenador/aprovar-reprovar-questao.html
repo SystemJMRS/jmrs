@@ -18,7 +18,7 @@
 	<h1 class="ls-title-intro ls-ico-home">Aprovar ou Reprovar Questão</h1>
 
 
-	<table class="ls-table">
+	<table class="ls-table" >
 		<tr>
 			<th>Id</th>
 			<th>Data de Criação</th>
@@ -29,33 +29,15 @@
 			<th>Status</th>
 			<th>Detalhes</th>
 		</tr>
-		<tr>
-			<td>1</td>
-			<td>11-08-2017</td>
-			<td
-				style="white-space: nowrap; overflow: hidden; max-width: 180px; height: 30px; text-overflow: ellipsis;">Conforme
-				definido pelo Corpo de Conhecimento para Gerenciamento de Projetos
-				de Software PMBOK, um dos artefatos de maior importância dentro do
-				planejamento de um projeto de software é a Estrutura Analítica do
-				Projeto (EAP).</td>
-			<td>Resposta Única</td>
-			<td
-				style="white-space: nowrap; overflow: hidden; max-width: 180px; height: 30px; text-overflow: ellipsis;">A)
-				Devem ser inseridas no planejamento do projeto, uma vez que a
-				empresa é a responsável pela implantação do software ( a
-				terceirização foi uma opção da própria empresa). B) Devem ser
-				inseridas no planejamento do projeto porque é obrigatório que um
-				processo de software tenha as atividades de “codificação” e “teste”
-				dentro do seus conjunto de atividades. C) Não devem ser inseridas no
-				planejamento do projeto porque, como elas foram terceirizadas, não é
-				necessário realizar controle de qualidade dessas atividades. D) Não
-				devem ser inseridas no planejamento do projeto porque, como elas
-				foram terceirizadas, não é necessário realizar o controle de
-				produção- tempo, esforço e custo – dessas atividades. E) Não devem
-				ser inseridas no planejamento do projeto, porque em um processo de
-				software não é obrigatório que as atividades de “codificação” e
-				“teste” estejam dentro do seu conjunto de atividades.</td>
-			<td>Roberta Silva</td>
+		<tr th:each="questao: ${questoes}">
+			<td th:text="${questao.questaoId}"></td>
+			<td th:text="${questao.dataCriacao}"></td>
+			<td th:text="${questao.questao}"
+				style="white-space: nowrap; overflow: hidden; max-width: 180px; height: 30px; text-overflow: ellipsis;"></td>
+			<td th:text="${questao.questaoTp.descricao}"></td>
+			<td th:text="${questao.resposta}"
+				style="white-space: nowrap; overflow: hidden; max-width: 180px; height: 30px; text-overflow: ellipsis;"></td>
+			<td th:text="${questao.usuario.login}"></td>
 			<td>Aprovada</td>
 			<td><a href="#"><span class="ls-ico-menu"
 					data-ls-module="modal" data-target="#1"></span></a></td>

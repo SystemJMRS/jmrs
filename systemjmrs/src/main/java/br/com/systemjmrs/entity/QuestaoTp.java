@@ -1,6 +1,8 @@
 package br.com.systemjmrs.entity;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -20,6 +22,9 @@ public class QuestaoTp implements Serializable {
 
 	private String descricao;
 
+	@OneToMany(mappedBy="questaoTp")
+	private List<Questao> questoes;
+	
 	public QuestaoTp() {
 	}
 
