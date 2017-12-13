@@ -20,7 +20,7 @@ public class Questao implements Serializable {
 	@Id
 	@Column(name = "questao_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int questaoId;
+	private long questaoId;
 
 	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -48,7 +48,7 @@ public class Questao implements Serializable {
 	public Questao() {
 	}
 
-	public int getQuestaoId() {
+	public long getQuestaoId() {
 		return this.questaoId;
 	}
 

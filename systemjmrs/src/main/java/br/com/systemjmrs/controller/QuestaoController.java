@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +17,7 @@ import br.com.systemjmrs.repository.QuestaoRepository;
 import br.com.systemjmrs.repository.QuestaoTPRepository;
 import br.com.systemjmrs.repository.UsuarioRepository;
 
+@RequestMapping(value = "/**", produces = {"text/plain", "application/*"})
 @Controller
 public class QuestaoController {
 
@@ -58,6 +60,15 @@ public class QuestaoController {
 		ModelAndView modelAndView = new ModelAndView("coordenador/aprovar-reprovar-questao");
 		
 		modelAndView.addObject("questoes", qr.findAll());
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ModelAndView aprovarReprovarQuestaoId(@PathVariable("id") Long id) {
+		ModelAndView modelAndView = new ModelAndView("coordenador/aprovar-reprovar-questao-detalhes");
+		
+		modelAndView.addObject("questao", qr.findOne((Long)id));
 		
 		return modelAndView;
 	}
