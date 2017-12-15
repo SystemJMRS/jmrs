@@ -17,16 +17,30 @@
 	<h1 class="ls-title-intro ls-ico-home">Aprovar ou Reprovar Questão
 		Detalhe</h1>
 
-	<form action="" class="ls-form row">
-		<fieldset>
-			<label class="ls-label col-md-3"> <b class="ls-label-text">Enunciado:</b>
-				<p>Teste</p>
-			</label> <label class="ls-label col-md-4"> <b class="ls-label-text">E-mail</b>
-				<p class="ls-label-info">Seu e-mail particular</p>
-			</label> <label class="ls-label col-md-5"> <b class="ls-label-text">Rua</b>
 
-			</label>
-		</fieldset>
+	<fieldset>
+		<h1 th:text="${questao.status.id}"></h1>
+		<label class="ls-label col-md-3"> <b class="ls-label-text">Texto
+				Base:</b>
+			<p th:text="${questao.textoBase}"></p>
+		</label> <label class="ls-label col-md-4"> <b class="ls-label-text">Enunciado:</b>
+			<p th:text="${questao.enunciado}"></p>
+		</label> <label class="ls-label col-md-4"> <b class="ls-label-text">Resposta:</b>
+			<p th:text="${questao.alternativa}"></p>
+		</label> <label class="ls-label col-md-4"> <b class="ls-label-text">Status:</b>
+			<div class="ls-custom-select ls-field-md">
+				<select name="status" form="aprovar-reprovar-form" class="form-control">
+					<option th:if="${questao.status.id} = 0" value="0">-</option>
+					<option th:if="${questao.status.id} = 1" value="1">Aprovada</option>
+					<option th:if="${questao.status.id} = 2" value="2">Não Aprovada</option>
+				</select>
+			</div>
+		</label>
+	</fieldset>
+	<form id="aprovar-reprovar-form" method="post"
+		th:action="@{/aprovar-reprovar-questao-detalhes/editar/} + ${questao.questaoId}"
+		class="ls-form row">
+		<button type="submit" value="input" class="ls-btn">Enviar</button>
 	</form>
 
 	<hr />

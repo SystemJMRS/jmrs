@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.systemjmrs.entity.Questao;
 import br.com.systemjmrs.entity.QuestaoTp;
+import br.com.systemjmrs.entity.QuestaoStatus;
 import br.com.systemjmrs.entity.Usuario;
 import br.com.systemjmrs.repository.QuestaoRepository;
 import br.com.systemjmrs.repository.QuestaoTPRepository;
@@ -66,7 +67,20 @@ public class QuestaoController {
 		ModelAndView modelAndView = new ModelAndView("/coordenador/aprovar-reprovar-questao-detalhes");
 
 		modelAndView.addObject("questao", qr.findOne((Long) id));
-
+		
 		return modelAndView;
+	}
+	
+	@RequestMapping(value = "aprovar-reprovar-questao-detalhes/editar/{id}", method = RequestMethod.POST)
+	public ModelAndView aprovarReprovarQuestaoIdGravar(@PathVariable Long id, @RequestParam("status") int status) {
+			
+		Questao novaQuestao = qr.findOne((Long) id);		
+		QuestaoStatus questaoStatus = QuestaoStatus.Default;		
+		questaoStatus = questaoStatus.getById(status);		
+		novaQuestao.setStatus(questaoStatus);
+		
+		qr.save(novaQuestao);
+		
+		return aprovarReprovarQuestao();
 	}
 }

@@ -1,12 +1,24 @@
 package br.com.systemjmrs.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * The persistent class for the questao database table.
@@ -48,6 +60,9 @@ public class Questao implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "usuario_id")
 	private Usuario usuario;
+
+	@Column(name = "status", columnDefinition = "INT(1) default 0", insertable = false, updatable = true)
+	private QuestaoStatus status;
 
 	public Questao() {
 	}
@@ -138,6 +153,14 @@ public class Questao implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public QuestaoStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(QuestaoStatus status) {
+		this.status = status.getById(status.getId());
 	}
 
 }
