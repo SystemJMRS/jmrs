@@ -17,7 +17,6 @@ import br.com.systemjmrs.repository.QuestaoRepository;
 import br.com.systemjmrs.repository.QuestaoTPRepository;
 import br.com.systemjmrs.repository.UsuarioRepository;
 
-@RequestMapping(value = "/**", produces = {"text/plain", "application/*"})
 @Controller
 public class QuestaoController {
 
@@ -53,20 +52,19 @@ public class QuestaoController {
 		return cadastrarQuestao();
 	}
 	
-	
 
 	@RequestMapping(value = "/aprovar-reprovar-questao", method = RequestMethod.GET)
 	public ModelAndView aprovarReprovarQuestao() {
-		ModelAndView modelAndView = new ModelAndView("coordenador/aprovar-reprovar-questao");
+		ModelAndView modelAndView = new ModelAndView("/coordenador/aprovar-reprovar-questao");
 		
 		modelAndView.addObject("questoes", qr.findAll());
 		
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ModelAndView aprovarReprovarQuestaoId(@PathVariable("id") Long id) {
-		ModelAndView modelAndView = new ModelAndView("coordenador/aprovar-reprovar-questao-detalhes");
+	@RequestMapping(value = "/aprovar-reprovar-questao-detalhes/{id}", method = RequestMethod.GET)
+	public ModelAndView aprovarReprovarQuestaoId(@PathVariable Long id) {
+		ModelAndView modelAndView = new ModelAndView("/coordenador/aprovar-reprovar-questao-detalhes");
 		
 		modelAndView.addObject("questao", qr.findOne((Long)id));
 		
