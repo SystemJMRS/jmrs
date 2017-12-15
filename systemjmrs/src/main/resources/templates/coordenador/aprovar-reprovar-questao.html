@@ -32,15 +32,15 @@
 		<tr th:each="questao: ${questoes}">
 			<td th:text="${questao.questaoId}"></td>
 			<td th:text="${questao.dataCriacao}"></td>
-			<td th:text="${questao.questao}"
+			<td th:text="${questao.textoBase}"
 				style="white-space: nowrap; overflow: hidden; max-width: 180px; height: 30px; text-overflow: ellipsis;"></td>
 			<td th:text="${questao.questaoTp.descricao}"></td>
-			<td th:text="${questao.resposta}"
+			<td th:text="${questao.alternativa}"
 				style="white-space: nowrap; overflow: hidden; max-width: 180px; height: 30px; text-overflow: ellipsis;"></td>
 			<td th:text="${questao.usuario.login}"></td>
 			<td>Aprovada</td>
 			<td><a
-				th:href="@{/aprovar-reprovar-questao-detalhes/} + ${questao.questaoId}"><span
+				th:href="@{/aprovar-reprovar-questao-detalhes/editar/} + ${questao.questaoId}"><span
 					class="ls-ico-menu" data-ls-module="modal" data-target="#1"></span></a></td>
 		</tr>
 	</table>

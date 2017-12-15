@@ -25,49 +25,48 @@ public class QuestaoController {
 
 	@Autowired
 	private UsuarioRepository ur;
-	
+
 	@Autowired
 	private QuestaoTPRepository qtpr;
 
-	@RequestMapping(value = "/cadastrar-questao", method = RequestMethod.GET)
+	@RequestMapping(value = "cadastrar-questao", method = RequestMethod.GET)
 	public ModelAndView cadastrarQuestao() {
 		ModelAndView modelAndView = new ModelAndView("/professor/cadastrar-questao");
 		modelAndView.addObject("questaoTipos", qtpr.findAll());
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/cadastrar-questao", method = RequestMethod.POST)
-	public ModelAndView cadastrarQuestao(@RequestParam("questao") String questao,
-			@RequestParam("questaoTpId") Long questaoTpForm, @RequestParam("resposta") String resposta,
-			@RequestParam("usuario") Long usuarioForm) {
+	@RequestMapping(value = "cadastrar-questao", method = RequestMethod.POST)
+	public ModelAndView cadastrarQuestao(@RequestParam("textoBase") String textoBase,
+			@RequestParam("enunciado") String enunciado, @RequestParam("alternativa") String alternativa,
+			@RequestParam("questaoTpId") Long questaoTpForm, @RequestParam("usuario") Long usuarioForm) {
 
 		Usuario usuario = ur.findOne(usuarioForm);
 		QuestaoTp questaoTp = qtpr.findOne(questaoTpForm);
 		Date dataCriacao = new Date();
 
-		Questao novaQuestao = new Questao(dataCriacao, questao, questaoTp, resposta, usuario);
+		Questao novaQuestao = new Questao(dataCriacao, textoBase, enunciado, alternativa, questaoTp, usuario);
 
 		qr.save(novaQuestao);
 
 		return cadastrarQuestao();
 	}
-	
 
-	@RequestMapping(value = "/aprovar-reprovar-questao", method = RequestMethod.GET)
+	@RequestMapping(value = "aprovar-reprovar-questao", method = RequestMethod.GET)
 	public ModelAndView aprovarReprovarQuestao() {
 		ModelAndView modelAndView = new ModelAndView("/coordenador/aprovar-reprovar-questao");
-		
+
 		modelAndView.addObject("questoes", qr.findAll());
-		
+
 		return modelAndView;
 	}
-	
-	@RequestMapping(value = "/aprovar-reprovar-questao-detalhes/{id}", method = RequestMethod.GET)
+
+	@RequestMapping(value = "aprovar-reprovar-questao-detalhes/editar/{id}", method = RequestMethod.GET)
 	public ModelAndView aprovarReprovarQuestaoId(@PathVariable Long id) {
 		ModelAndView modelAndView = new ModelAndView("/coordenador/aprovar-reprovar-questao-detalhes");
-		
-		modelAndView.addObject("questao", qr.findOne((Long)id));
-		
+
+		modelAndView.addObject("questao", qr.findOne((Long) id));
+
 		return modelAndView;
 	}
 }

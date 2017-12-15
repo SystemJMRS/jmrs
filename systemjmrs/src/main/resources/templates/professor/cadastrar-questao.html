@@ -22,24 +22,27 @@
 		<div>
 			<fieldset>
 
-				<label class="ls-label"> <b class="ls-label-text">Questao</b>
-					<input name="questao" class="ls-field-lg" type="text" required=""
-					autofocus="" />
-				</label> <label class="ls-label"> <b class="ls-label-text">Tipo</b><select class="form-control"
-					name="questaoTpId" form="cadastro">
-						<option th:each="questaoTipo : ${questaoTipos}"
-							th:text="${questaoTipo.descricao}"
-							th:value="${questaoTipo.questaoTpId}"></option>
-				</select>
-				
-				</label><label class="ls-label"> <b class="ls-label-text">Reposta</b>
-					<input name="resposta" class="ls-field-lg" type="text" required=""
-					autofocus="" />
+				<label class="ls-label"> <b class="ls-label-text">Texto
+						Base</b> <input name="textoBase" class="ls-field-lg" type="text"
+					required="" autofocus="" /></label> <label class="ls-label"> <b
+					class="ls-label-text">Enunciado</b> <input name="enunciado"
+					class="ls-field-lg" type="text" required="" autofocus="" />
+				</label><label class="ls-label"> <b class="ls-label-text">Alternativas</b>
+					<input name="alternativa" class="ls-field-lg" type="text"
+					required="" autofocus="" />
+				</label> <label class="ls-label"> <b class="ls-label-text">Tipo</b>
+					<div class="ls-custom-select ls-field-lg">
+						<select class="form-control" name="questaoTpId" form="cadastro">
+							<option th:each="questaoTipo : ${questaoTipos}"
+								th:text="${questaoTipo.descricao}"
+								th:value="${questaoTipo.questaoTpId}"></option>
+						</select>
+
+					</div>
 				</label> <label class="ls-label"> <b class="ls-label-text">Usuario</b>
 					<input name="usuario" class="ls-field-lg" type="number" required=""
 					autofocus="" />
 				</label>
-
 			</fieldset>
 		</div>
 		<button type="submit" value="input" class="ls-btn">Cadastrar</button>

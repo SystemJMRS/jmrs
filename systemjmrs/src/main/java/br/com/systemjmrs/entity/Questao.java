@@ -28,13 +28,17 @@ public class Questao implements Serializable {
 	private Date dataCriacao;
 
 	@Lob
-	private String questao;
+	private String textoBase;
+
+	@Lob
+	private String enunciado;
+
+	@Lob
+	private String alternativa;
 
 	@ManyToOne
 	@JoinColumn(name = "questao_tp_id")
 	private QuestaoTp questaoTp;
-
-	private String resposta;
 
 	// bi-directional many-to-one association to Imagem
 	@OneToMany(mappedBy = "questao")
@@ -52,11 +56,13 @@ public class Questao implements Serializable {
 		return this.questaoId;
 	}
 
-	public Questao(Date dataCriacao, String questao, QuestaoTp questaoTp, String resposta, Usuario usuario) {
+	public Questao(Date dataCriacao, String textoBase, String enunciado, String alternativa, QuestaoTp questaoTp,
+			Usuario usuario) {
 		this.dataCriacao = dataCriacao;
-		this.questao = questao;
+		this.textoBase = textoBase;
+		this.enunciado = enunciado;
+		this.alternativa = alternativa;
 		this.questaoTp = questaoTp;
-		this.resposta = resposta;
 		this.usuario = usuario;
 	}
 
@@ -72,12 +78,28 @@ public class Questao implements Serializable {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public String getQuestao() {
-		return this.questao;
+	public String getTextoBase() {
+		return textoBase;
 	}
 
-	public void setQuestao(String questao) {
-		this.questao = questao;
+	public void setTextoBase(String textoBase) {
+		this.textoBase = textoBase;
+	}
+
+	public String getEnunciado() {
+		return enunciado;
+	}
+
+	public void setEnunciado(String enunciado) {
+		this.enunciado = enunciado;
+	}
+
+	public String getAlternativa() {
+		return alternativa;
+	}
+
+	public void setAlternativa(String alternativa) {
+		this.alternativa = alternativa;
 	}
 
 	public QuestaoTp getQuestaoTp() {
@@ -86,14 +108,6 @@ public class Questao implements Serializable {
 
 	public void setQuestaoTp(QuestaoTp questaoTp) {
 		this.questaoTp = questaoTp;
-	}
-
-	public String getResposta() {
-		return this.resposta;
-	}
-
-	public void setResposta(String resposta) {
-		this.resposta = resposta;
 	}
 
 	public List<Imagem> getImagens() {
