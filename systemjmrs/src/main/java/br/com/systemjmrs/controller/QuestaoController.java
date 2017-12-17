@@ -1,6 +1,10 @@
 package br.com.systemjmrs.controller;
 
 import java.util.Date;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,14 +12,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.systemjmrs.entity.Imagem;
 import br.com.systemjmrs.entity.Questao;
 import br.com.systemjmrs.entity.QuestaoTp;
 import br.com.systemjmrs.entity.QuestaoStatus;
 import br.com.systemjmrs.entity.Usuario;
+import br.com.systemjmrs.repository.ImagemRepository;
 import br.com.systemjmrs.repository.QuestaoRepository;
 import br.com.systemjmrs.repository.QuestaoTPRepository;
+import br.com.systemjmrs.repository.StorageService;
 import br.com.systemjmrs.repository.UsuarioRepository;
 
 @Controller
@@ -30,6 +38,12 @@ public class QuestaoController {
 	@Autowired
 	private QuestaoTPRepository qtpr;
 
+	@Autowired
+	private ImagemRepository imgRepository;
+
+	@Autowired
+	StorageService storageService;
+
 	@RequestMapping(value = "cadastrar-questao", method = RequestMethod.GET)
 	public ModelAndView cadastrarQuestao() {
 		ModelAndView modelAndView = new ModelAndView("/professor/cadastrar-questao");
@@ -40,15 +54,27 @@ public class QuestaoController {
 	@RequestMapping(value = "cadastrar-questao", method = RequestMethod.POST)
 	public ModelAndView cadastrarQuestao(@RequestParam("textoBase") String textoBase,
 			@RequestParam("enunciado") String enunciado, @RequestParam("alternativa") String alternativa,
-			@RequestParam("questaoTpId") Long questaoTpForm, @RequestParam("usuario") Long usuarioForm) {
+			@RequestParam("questaoTpId") Long questaoTpForm, @RequestParam("imagem") MultipartFile file,
+			@RequestParam("usuario") Long usuarioForm) {
 
 		Usuario usuario = ur.findOne(usuarioForm);
 		QuestaoTp questaoTp = qtpr.findOne(questaoTpForm);
 		Date dataCriacao = new Date();
+		Imagem imagem = new Imagem();
+
+		storageService.store(file);
+		imagem.setDiretorio("imagens\\"+file.getOriginalFilename());
 
 		Questao novaQuestao = new Questao(dataCriacao, textoBase, enunciado, alternativa, questaoTp, usuario);
 
 		qr.save(novaQuestao);
+
+		if (!file.isEmpty()) {
+			imagem.setDataCriacao(dataCriacao);
+			// imagem.setQuestao(novaQuestao);
+			novaQuestao.addImagem(imagem);
+			imgRepository.save(imagem);
+		}
 
 		return cadastrarQuestao();
 	}
@@ -67,20 +93,20 @@ public class QuestaoController {
 		ModelAndView modelAndView = new ModelAndView("/coordenador/aprovar-reprovar-questao-detalhes");
 
 		modelAndView.addObject("questao", qr.findOne((Long) id));
-		
+
 		return modelAndView;
 	}
-	
+
 	@RequestMapping(value = "aprovar-reprovar-questao-detalhes/editar/{id}", method = RequestMethod.POST)
 	public ModelAndView aprovarReprovarQuestaoIdGravar(@PathVariable Long id, @RequestParam("status") int status) {
-			
-		Questao novaQuestao = qr.findOne((Long) id);		
-		QuestaoStatus questaoStatus = QuestaoStatus.Default;		
-		questaoStatus = questaoStatus.getById(status);		
+
+		Questao novaQuestao = qr.findOne((Long) id);
+		QuestaoStatus questaoStatus = QuestaoStatus.Default;
+		questaoStatus = questaoStatus.getById(status);
 		novaQuestao.setStatus(questaoStatus);
-		
+
 		qr.save(novaQuestao);
-		
+
 		return aprovarReprovarQuestao();
 	}
 }

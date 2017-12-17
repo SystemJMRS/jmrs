@@ -129,12 +129,12 @@ public class Questao implements Serializable {
 		return this.imagens;
 	}
 
-	public void setImagems(List<Imagem> imagems) {
-		this.imagens = imagems;
+	public void setImagems(List<Imagem> imagens) {
+		this.imagens = imagens;
 	}
 
 	public Imagem addImagem(Imagem imagem) {
-		getImagens().add(imagem);
+		//	getImagens().add(imagem);
 		imagem.setQuestao(this);
 
 		return imagem;

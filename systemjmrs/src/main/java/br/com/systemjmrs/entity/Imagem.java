@@ -16,7 +16,8 @@ public class Imagem implements Serializable {
 
 	@Id
 	@Column(name="imagem_id")
-	private int imagemId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long imagemId;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="data_criacao")
@@ -32,12 +33,8 @@ public class Imagem implements Serializable {
 	public Imagem() {
 	}
 
-	public int getImagemId() {
+	public Long getImagemId() {
 		return this.imagemId;
-	}
-
-	public void setImagemId(int imagemId) {
-		this.imagemId = imagemId;
 	}
 
 	public Date getDataCriacao() {
