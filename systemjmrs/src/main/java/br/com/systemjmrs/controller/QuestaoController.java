@@ -62,12 +62,12 @@ public class QuestaoController {
 		Date dataCriacao = new Date();
 		Imagem imagem = new Imagem();
 
-		storageService.store(file);
-		imagem.setDiretorio("imagens\\"+file.getOriginalFilename());
-
 		Questao novaQuestao = new Questao(dataCriacao, textoBase, enunciado, alternativa, questaoTp, usuario);
 
 		qr.save(novaQuestao);
+
+		imagem.setDiretorio("../../imagens/" + novaQuestao.getQuestaoId() + "_" + file.getOriginalFilename());
+		storageService.store(file, novaQuestao);
 
 		if (!file.isEmpty()) {
 			imagem.setDataCriacao(dataCriacao);
@@ -93,6 +93,7 @@ public class QuestaoController {
 		ModelAndView modelAndView = new ModelAndView("/coordenador/aprovar-reprovar-questao-detalhes");
 
 		modelAndView.addObject("questao", qr.findOne((Long) id));
+		modelAndView.addObject("imagens", imgRepository.findByQuestao(qr.findOne((Long) id)));
 
 		return modelAndView;
 	}

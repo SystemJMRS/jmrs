@@ -6,23 +6,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.systemjmrs.entity.Questao;
+
 @Service
 public class StorageService {
+	private final Path rootLocation = Paths.get("src\\main\\resources\\static\\imagens");
 
-	private final Path rootLocation = Paths.get("imagens");
-
-	public void store(MultipartFile file) {
+	public void store(MultipartFile file, Questao questao) {
 		try {
-			Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getName().toString() + ".jpg"));
-			System.out.println(this.rootLocation.resolve(file.getOriginalFilename()).toString());
+			Files.copy(file.getInputStream(),
+					this.rootLocation.resolve(questao.getQuestaoId() + "_" + file.getOriginalFilename().toString()));
 		} catch (Exception e) {
 			throw new RuntimeException("FAIL!");
 		}
@@ -52,5 +51,11 @@ public class StorageService {
 		} catch (IOException e) {
 			throw new RuntimeException("Could not initialize storage!");
 		}
+	}
+
+	public String getRootLocation() {
+
+		return rootLocation.toString();
+
 	}
 }
