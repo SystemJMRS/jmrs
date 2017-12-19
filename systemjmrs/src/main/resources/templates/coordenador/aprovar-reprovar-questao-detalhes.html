@@ -25,7 +25,7 @@
 			<p th:text="${questao.enunciado}"></p>
 		</label> <label class="ls-label col-md-4"> <b class="ls-label-text">Resposta:</b>
 			<p th:text="${questao.alternativa}"></p>
-		</label><label class="ls-label col-md-4"> <b class="ls-label-text">Imagens:</b>
+		</label><label th:if="${imagens[0].imagemId} != null" class="ls-label col-md-4"> <b class="ls-label-text">Imagens:</b>
 			<div th:each="imagem : ${imagens}">
 				<img th:src="${imagem.diretorio}"></img>
 			</div>
