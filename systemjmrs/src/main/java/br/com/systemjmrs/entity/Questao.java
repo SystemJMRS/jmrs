@@ -63,6 +63,11 @@ public class Questao implements Serializable {
 
 	@Column(name = "status", columnDefinition = "INT(1) default 0", insertable = false, updatable = true)
 	private QuestaoStatus status;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "disciplina_id")
+	private Disciplina disciplina;
 
 	public Questao() {
 	}
@@ -72,7 +77,7 @@ public class Questao implements Serializable {
 	}
 
 	public Questao(Date dataCriacao, String textoBase, String enunciado, String alternativa, QuestaoTp questaoTp,
-			Usuario usuario) {
+			Usuario usuario, Disciplina disciplina2) {
 		this.dataCriacao = dataCriacao;
 		this.textoBase = textoBase;
 		this.enunciado = enunciado;
@@ -162,5 +167,15 @@ public class Questao implements Serializable {
 	public void setStatus(QuestaoStatus status) {
 		this.status = status.getById(status.getId());
 	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
+	}
+	
+	
 
 }

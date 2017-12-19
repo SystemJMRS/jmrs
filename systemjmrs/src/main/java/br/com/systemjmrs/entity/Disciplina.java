@@ -1,6 +1,8 @@
 package br.com.systemjmrs.entity;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -15,18 +17,21 @@ public class Disciplina implements Serializable {
 
 	@Id
 	@Column(name="disciplina_id")
-	private int disciplinaId;
+	private Long disciplinaId;
 
 	private String disciplina;
-
+	
+	@OneToMany(mappedBy="disciplina")
+	private List<Questao> questoes;
+	
 	public Disciplina() {
 	}
 
-	public int getDisciplinaId() {
+	public Long getDisciplinaId() {
 		return this.disciplinaId;
 	}
 
-	public void setDisciplinaId(int disciplinaId) {
+	public void setDisciplinaId(Long disciplinaId) {
 		this.disciplinaId = disciplinaId;
 	}
 

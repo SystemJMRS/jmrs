@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import br.com.systemjmrs.entity.Disciplina;
 import br.com.systemjmrs.entity.Imagem;
 import br.com.systemjmrs.entity.Questao;
 import br.com.systemjmrs.entity.QuestaoTp;
 import br.com.systemjmrs.entity.QuestaoStatus;
 import br.com.systemjmrs.entity.Usuario;
+import br.com.systemjmrs.repository.DisciplinaRepository;
 import br.com.systemjmrs.repository.ImagemRepository;
 import br.com.systemjmrs.repository.QuestaoRepository;
 import br.com.systemjmrs.repository.QuestaoTPRepository;
@@ -40,6 +42,10 @@ public class QuestaoController {
 
 	@Autowired
 	private ImagemRepository imgRepository;
+	
+	@Autowired
+	private DisciplinaRepository DisciplinaRepository;
+	
 
 	@Autowired
 	StorageService storageService;
@@ -48,6 +54,7 @@ public class QuestaoController {
 	public ModelAndView cadastrarQuestao() {
 		ModelAndView modelAndView = new ModelAndView("/professor/cadastrar-questao");
 		modelAndView.addObject("questaoTipos", qtpr.findAll());
+		modelAndView.addObject("disciplinas", DisciplinaRepository.findAll());
 		return modelAndView;
 	}
 
@@ -55,14 +62,15 @@ public class QuestaoController {
 	public ModelAndView cadastrarQuestao(@RequestParam("textoBase") String textoBase,
 			@RequestParam("enunciado") String enunciado, @RequestParam("alternativa") String alternativa,
 			@RequestParam("questaoTpId") Long questaoTpForm, @RequestParam("imagem") MultipartFile file,
-			@RequestParam("usuario") Long usuarioForm) {
+			@RequestParam("usuario") Long usuarioForm, @RequestParam("disciplina") Long disciplinaForm) {
 
 		Usuario usuario = ur.findOne(usuarioForm);
+		Disciplina disciplina = DisciplinaRepository.findOne(usuarioForm);
 		QuestaoTp questaoTp = qtpr.findOne(questaoTpForm);
 		Date dataCriacao = new Date();
 		Imagem imagem = new Imagem();
 
-		Questao novaQuestao = new Questao(dataCriacao, textoBase, enunciado, alternativa, questaoTp, usuario);
+		Questao novaQuestao = new Questao(dataCriacao, textoBase, enunciado, alternativa, questaoTp, usuario, disciplina);
 
 		qr.save(novaQuestao);
 
