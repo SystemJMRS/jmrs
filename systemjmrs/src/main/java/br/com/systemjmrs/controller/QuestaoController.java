@@ -1,10 +1,6 @@
 package br.com.systemjmrs.controller;
 
 import java.util.Date;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,8 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.systemjmrs.entity.Disciplina;
 import br.com.systemjmrs.entity.Imagem;
 import br.com.systemjmrs.entity.Questao;
-import br.com.systemjmrs.entity.QuestaoTp;
 import br.com.systemjmrs.entity.QuestaoStatus;
+import br.com.systemjmrs.entity.QuestaoTp;
 import br.com.systemjmrs.entity.Usuario;
 import br.com.systemjmrs.repository.DisciplinaRepository;
 import br.com.systemjmrs.repository.ImagemRepository;
@@ -42,10 +38,9 @@ public class QuestaoController {
 
 	@Autowired
 	private ImagemRepository imgRepository;
-	
+
 	@Autowired
 	private DisciplinaRepository DisciplinaRepository;
-	
 
 	@Autowired
 	StorageService storageService;
@@ -62,15 +57,16 @@ public class QuestaoController {
 	public ModelAndView cadastrarQuestao(@RequestParam("textoBase") String textoBase,
 			@RequestParam("enunciado") String enunciado, @RequestParam("alternativa") String alternativa,
 			@RequestParam("questaoTpId") Long questaoTpForm, @RequestParam("imagem") MultipartFile file,
-			@RequestParam("usuario") Long usuarioForm, @RequestParam("disciplina") Long disciplinaForm) {
+			@RequestParam("disciplina") Long disciplinaForm) {
 
-		Usuario usuario = ur.findOne(usuarioForm);
-		Disciplina disciplina = DisciplinaRepository.findOne(usuarioForm);
+		Usuario usuario = ur.findOne((long) 1);
+		Disciplina disciplina = DisciplinaRepository.findOne(disciplinaForm);
 		QuestaoTp questaoTp = qtpr.findOne(questaoTpForm);
 		Date dataCriacao = new Date();
 		Imagem imagem = new Imagem();
 
-		Questao novaQuestao = new Questao(dataCriacao, textoBase, enunciado, alternativa, questaoTp, usuario, disciplina);
+		Questao novaQuestao = new Questao(dataCriacao, textoBase, enunciado, alternativa, questaoTp, usuario,
+				disciplina);
 
 		qr.save(novaQuestao);
 

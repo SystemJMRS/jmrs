@@ -35,30 +35,26 @@
 						</select>
 
 					</div>
-				</label>
-				<label class="ls-label"> <b class="ls-label-text">Disciplina</b>
+				</label> <label class="ls-label"> <b class="ls-label-text">Disciplina</b>
 					<div class="ls-custom-select ls-field-lg">
 						<select class="form-control" name="disciplina" form="cadastro">
 							<option th:each="displina : ${disciplinas}"
 								th:text="${displina.disciplina}"
 								th:value="${displina.disciplinaId}"></option>
 						</select>
-
 					</div>
 				</label> <label class="ls-label"> <b class="ls-label-text">Texto
-						Base</b> <input name="textoBase" class="ls-field-lg" type="text"
-					required="" autofocus="" /></label> <label class="ls-label"> <b
-					class="ls-label-text">Enunciado</b> <input name="enunciado"
-					class="ls-field-lg" type="text" required="" autofocus="" />
+						Base</b> <textarea form="cadastro" name="textoBase"
+						required="required" autofocus="autofocus" rows="4"></textarea></label> <label
+					class="ls-label"> <b class="ls-label-text">Enunciado</b> <textarea
+						form="cadastro" name="enunciado" required="required"
+						autofocus="autofocus" rows="4" ></textarea>
 				</label><label class="ls-label"> <b class="ls-label-text">Alternativas</b>
-					<input name="alternativa" class="ls-field-lg" type="text"
-					required="" autofocus="" />
+					<textarea form="cadastro" name="alternativa" required="required"
+						autofocus="autofocus" rows="4" ></textarea>
 				</label> <label class="ls-label"> <b class="ls-label-text">Imagem</b>
-					<input name="imagem" class="ls-field-lg" type="file" autofocus=""
-					multiple="" />
-				</label><label class="ls-label"> <b class="ls-label-text">Usuario</b>
-					<input name="usuario" class="ls-field-lg" type="number" required=""
-					autofocus="" />
+					<input name="imagem" class="ls-field-lg" type="file"
+					autofocus="autofocus" ></input>
 				</label>
 			</fieldset>
 		</div>

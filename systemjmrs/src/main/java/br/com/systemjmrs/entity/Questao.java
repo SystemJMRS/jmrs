@@ -77,13 +77,14 @@ public class Questao implements Serializable {
 	}
 
 	public Questao(Date dataCriacao, String textoBase, String enunciado, String alternativa, QuestaoTp questaoTp,
-			Usuario usuario, Disciplina disciplina2) {
+			Usuario usuario, Disciplina disciplina) {
 		this.dataCriacao = dataCriacao;
 		this.textoBase = textoBase;
 		this.enunciado = enunciado;
 		this.alternativa = alternativa;
 		this.questaoTp = questaoTp;
 		this.usuario = usuario;
+		this.disciplina = disciplina;
 	}
 
 	public void setQuestaoId(int questaoId) {
