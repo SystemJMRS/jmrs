@@ -59,7 +59,7 @@ public class QuestaoController {
 			@RequestParam("questaoTpId") Long questaoTpForm, @RequestParam("imagem") MultipartFile file,
 			@RequestParam("disciplina") Long disciplinaForm) {
 
-		Usuario usuario = ur.findOne((long) 1);
+		Usuario usuario = ur.findOne((long) 2);
 		Disciplina disciplina = DisciplinaRepository.findOne(disciplinaForm);
 		QuestaoTp questaoTp = qtpr.findOne(questaoTpForm);
 		Date dataCriacao = new Date();
