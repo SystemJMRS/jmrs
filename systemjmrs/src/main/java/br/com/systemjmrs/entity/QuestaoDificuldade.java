@@ -2,7 +2,7 @@ package br.com.systemjmrs.entity;
 
 public enum QuestaoDificuldade {
 
-	Facil(0, "Fácil"), Aprovada(1, "Aprovada"), Reprovada(2, "Reprovada");
+	Default(0, "Fácil"), Aprovada(1, "Aprovada"), Reprovada(2, "Reprovada");
 
 	private int id;
 	private String descricao;
